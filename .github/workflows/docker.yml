@@ -12,7 +12,7 @@ jobs:
           - name: echo
             run: echo "New pull request"
 
-    pull_request_closed:
+    build_and_push:
         if: github.event.action == 'closed'
         runs-on: ubuntu-latest
         env:
@@ -29,7 +29,7 @@ jobs:
             - name: Docker Login
               uses: docker/login-action@v3
               with:
-                username: ${{ secrets.DOCKERHUB_USERNAME }}
+                username: ${{ env.USERNAME }}
                 password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
             - name: Build and push
@@ -37,6 +37,6 @@ jobs:
               with: 
                 push: true
                 tags: |
-                    $IMAGE:latest
-                cache-from: type=registry,ref=${USERNAME}/${IMAGE}:buildcache
-                cache-to: type=registry,ref=${USERNAME}${IMAGE}:buildcache,mode=max
+                    ${{ env.IMAGE }}:latest
+                cache-from: type=registry,ref=${{ env.USERNAME }}/${{ env.IMAGE }}:buildcache
+                cache-to: type=registry,ref=${{ env.USERNAME }}/${{ env.IMAGE }}:buildcache,mode=max
