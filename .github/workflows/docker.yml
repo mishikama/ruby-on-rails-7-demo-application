@@ -40,3 +40,4 @@ jobs:
                     ${{ env.USERNAME }}/${{ env.IMAGE }}:latest
                 cache-from: type=registry,ref=${{ env.USERNAME }}/${{ env.IMAGE }}:buildcache
                 cache-to: type=registry,ref=${{ env.USERNAME }}/${{ env.IMAGE }}:buildcache,mode=max
+                platforms: linux/amd64,linux/arm64
