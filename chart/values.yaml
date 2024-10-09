@@ -2,9 +2,9 @@ replicaCount: 2
 namespace: "default"
 
 image:
-  name: mishila/mylab-ruby-app
+  registry: hub.docker.com
+  repository: mishila/mylab-ruby-app
   tag: latest
 
-service:
-  type: NodePort
-  port: 80
+rubyApp:
+  containerPort: 3000

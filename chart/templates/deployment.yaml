@@ -17,10 +17,10 @@ spec:
     spec:
       containers:
       - name: ruby-app
-        image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
         - name: http
-          containerPort: 3000
+          containerPort: {{ .Values.rubyApp.containerPort }}
         resources:
           requests:
             memory: "16Mi" 
