@@ -1,0 +1,17 @@
+.DS_Store
+Thumbs.db
+
+**/*.log
+**/*data
+
+**/.classpath
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.vscode
+
+**/bin
+**/charts
+**/docker-compose*
+**/Dockerfile*
