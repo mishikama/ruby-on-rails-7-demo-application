@@ -2,16 +2,15 @@
 Thumbs.db
 
 **/*.log
-**/*data
+**/data
 
 **/.classpath
 **/.dockerignore
 **/.env
-**/.git
-**/.gitignore
+**/.git*
 **/.vscode
 
 **/bin
-**/charts
+**/chart
 **/docker-compose*
 **/Dockerfile*
