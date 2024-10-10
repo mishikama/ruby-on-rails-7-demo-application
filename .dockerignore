@@ -1,16 +1,18 @@
-.DS_Store
-Thumbs.db
+**/.DS_Store
+**/Thumbs.db
+
+**/.vscode
+.git*
 
 **/*.log
-**/data
+**/log
 
-**/.classpath
-**/.dockerignore
-**/.env
-**/.git*
-**/.vscode
-
-**/bin
-**/chart
 **/docker-compose*
 **/Dockerfile*
+**/.env
+
+Makefile
+README.md
+
+/ruby-app/data
+/ruby-app/chart

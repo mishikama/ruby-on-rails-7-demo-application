@@ -9,7 +9,7 @@ RUN apt-get update && \
 
 RUN gem install bundler
 
-COPY Gemfile* .
+COPY ruby-app/Gemfile* .
 RUN bundle install
 
 # stage runner
@@ -22,8 +22,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
-COPY . .
+COPY ruby-app .
 
 EXPOSE 3000
 RUN chmod +x script.sh
-CMD ["./script.sh"]
+CMD ["./docker-start.sh"]
