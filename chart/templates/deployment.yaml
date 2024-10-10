@@ -20,24 +20,14 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         env:
         - name: DB_HOST
-          values: "{{ .Release.Name }}-postgresql.{{ .Release.Namespace }}.svc.cluster.local"
+          value: "{{ .Values.database.host }}"
         - name: DB_PORT
-          values: 5432
+          value: "{{ .Values.database.port }}"
         - name: DB_USERNAME
-          values: postgres
+          value: "{{ .Values.database.username }}"
         - name: DB_PASSWORD
-          envFrom:
-            secretKeyRef:
-              name: app-postgresql
-              key: postgres-password
-              
+          value: "{{ .Values.database.password }}"
+
         ports:
         - name: http
-          containerPort: {{ .Values.rubyApp.containerPort }}
-        resources:
-          requests:
-            memory: "16Mi" 
-            cpu: "50m"
-          limits:
-            memory: "128Mi"
-            cpu: "100m"
+          containerPort: {{ .Values.containerPort }}

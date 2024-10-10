@@ -1,10 +1,18 @@
-replicaCount: 2
+replicaCount: 1
 namespace: "default"
+containerPort: 3000
+
+database:
+  host: postgres-postgresql.postgres
+  port: 5432
+  username: postgres
+  password:
 
 image:
   registry: hub.docker.com
   repository: mishila/mylab-ruby-app
   tag: latest
 
-rubyApp:
-  containerPort: 3000
+service:
+  port: 80
+  targetPort: 3000
