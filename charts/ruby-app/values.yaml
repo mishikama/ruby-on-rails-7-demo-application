@@ -11,7 +11,7 @@ postgresql:
   host: postgresql
   username: postgres
   port: 5432
-  password: YJJ0szxLb2
+  password:
   secrets:
     name: postgresql
     key: postgres-password
