@@ -25,5 +25,5 @@ COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 COPY ruby-app .
 
 EXPOSE 3000
-RUN chmod +x script.sh
+RUN chmod +x docker-start.sh
 CMD ["./docker-start.sh"]
