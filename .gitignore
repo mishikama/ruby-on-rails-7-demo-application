@@ -27,5 +27,5 @@
 /config/master.key
 
 # Ignore chart files
-/chart/charts
-chart/*.lock
+/charts/**/charts
+/charts/**/*.lock

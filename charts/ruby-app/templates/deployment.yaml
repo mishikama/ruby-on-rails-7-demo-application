@@ -20,14 +20,13 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         env:
         - name: DB_HOST
-          value: "{{ .Values.database.host }}"
+          value: "{{ .Values.postgresql.host }}"
         - name: DB_PORT
-          value: "{{ .Values.database.port }}"
+          value: "{{ .Values.postgresql.port }}"
         - name: DB_USERNAME
-          value: "{{ .Values.database.username }}"
+          value: "{{ .Values.postgresql.username }}"
         - name: DB_PASSWORD
-          value: "{{ .Values.database.password }}"
-
+          value: "{{ .Values.postgresql.password }}"
         ports:
         - name: http
           containerPort: {{ .Values.containerPort }}

@@ -1,7 +1,7 @@
 services:
   app:
+    image: mishila/mylab-ruby-app:latest
     hostname: app
-    build: .
     ports:
       - 3000:3000
     environment:
