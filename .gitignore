@@ -2,14 +2,12 @@
 /.bundle
 
 # Ignore the database.
-/db/*.sqlite3
-/db/*.sqlite3-*
+/db/*.sqlite3*
 /data
 
 # Ignore all logfiles and tempfiles.
 **/*.log
-!/log/.keep
-!/tmp/.keep
+**/log
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
@@ -29,5 +27,5 @@
 /config/master.key
 
 # Ignore chart files
-/chart/charts
-**/*.lock
+/charts/**/charts
+/charts/**/*.lock

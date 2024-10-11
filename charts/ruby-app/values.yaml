@@ -1,0 +1,16 @@
+replicaCount: 1
+namespace: "default"
+containerPort: 3000
+
+image:
+  registry: hub.docker.com
+  repository: mishila/mylab-ruby-app
+  tag: latest
+
+igress:
+  enabled: true
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
