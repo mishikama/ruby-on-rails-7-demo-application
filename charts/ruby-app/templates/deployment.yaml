@@ -26,7 +26,10 @@ spec:
         - name: DB_USERNAME
           value: "{{ .Values.postgresql.username }}"
         - name: DB_PASSWORD
-          value: "{{ .Values.postgresql.password }}"
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.postgresql.secrets.name }}
+              key: {{ .Values.postgresql.secrets.key }}
         ports:
         - name: http
           containerPort: {{ .Values.containerPort }}

@@ -7,6 +7,15 @@ image:
   repository: mishila/mylab-ruby-app
   tag: latest
 
+postgresql:
+  host: postgresql
+  username: postgres
+  port: 5432
+  password:
+  secrets:
+    name: postgresql
+    key: postgres-password
+
 igress:
   enabled: true
 
