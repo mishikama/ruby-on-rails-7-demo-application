@@ -16,8 +16,9 @@ jobs:
         if: github.event.action == 'closed'
         runs-on: ubuntu-latest
         env:
-            USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+            DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
             IMAGE: ${{ vars.IMAGE_NAME }}
+            DOCKERHUB_REPOSITORY: ${{ secrets.DOCKERHUB_USERNAME}}/${{ vars.IMAGE_NAME }}
 
         steps:
             - name: Checkout
@@ -26,18 +27,26 @@ jobs:
             - name: Set up Docker Buildx
               uses: docker/setup-buildx-action@v3
 
+            - name: Docker metadata
+              id: meta
+              uses: docker/metadata-action@v5
+              with: 
+                images: ${{ env.DOCKERHUB_REPOSITORY }}
+                tags: |
+                  type=sha
+                  type=raw,value=latest
+
             - name: Docker Login
               uses: docker/login-action@v3
               with:
-                username: ${{ env.USERNAME }}
-                password: ${{ secrets.DOCKER_HUB_TOKEN }}
+                username: ${{ env.DOCKERHUB_USERNAME }}
+                password: ${{ secrets.DOCKERHUB_TOKEN }}
 
             - name: Build and push
               uses: docker/build-push-action@v6
               with: 
                 push: true
-                tags: |
-                    ${{ env.USERNAME }}/${{ env.IMAGE }}:latest
-                cache-from: type=registry,ref=${{ env.USERNAME }}/${{ env.IMAGE }}:buildcache
-                cache-to: type=registry,ref=${{ env.USERNAME }}/${{ env.IMAGE }}:buildcache,mode=max
+                tags: ${{ steps.meta.outputs.tags }}
+                cache-from: type=registry,ref=${{ env.DOCKERHUB_REPOSITORY }}:buildcache
+                cache-to: type=registry,ref=${{ env.DOCKERHUB_REPOSITORY }}:buildcache,mode=max
                 platforms: linux/amd64,linux/arm64
