@@ -65,4 +65,4 @@ jobs:
             - name: deploy
               run: |
                 helmfile -f charts/helmfile.yaml apply \
-                -set image.tag=${{ env.SHA_TAG }}
+                --set image.tag=${{ env.SHA_TAG }}
