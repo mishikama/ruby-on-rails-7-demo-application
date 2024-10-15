@@ -54,7 +54,7 @@ jobs:
             - name: extract SHA tag
               id: extract_tag
               run: |
-                sha_tag=$(echo "$metadata_output" | grep -o 'sha.*')
+                sha_tag=$(echo ${{ steps.meta.outputs.tags }} | grep -o 'sha.*')
                 echo "::set-output name=sha_tag::$sha_tag"
 
             - name: setup-helmfile
