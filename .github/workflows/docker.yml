@@ -54,8 +54,8 @@ jobs:
             - name: extract SHA tag
               id: extract_tag
               run: |
-                sha_tag=$(echo ${{ steps.meta.outputs.tags }} | grep -o 'sha.*')
-                echo "::set-output name=sha_tag::$sha_tag"
+                 sha_tag=$(echo "${{ steps.meta.outputs.tags }}" | grep -o 'sha.*')
+                 echo "SHA_TAG=$sha_tag" >> $GITHUB_ENV
 
             - name: setup-helmfile
               uses: mamezou-tech/setup-helmfile@v2.0.0
@@ -65,4 +65,4 @@ jobs:
             - name: deploy
               run: |
                 helmfile -f charts/helmfile.yaml apply \
-                -set image.tag=${{ steps.extract_tag.sha_tag }}
+                -set image.tag=${{ env.SHA_TAG }}
