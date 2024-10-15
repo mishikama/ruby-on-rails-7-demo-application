@@ -7,3 +7,8 @@ releases:
     namespace: default
     chart: bitnami/postgresql
     version: 16.0.1
+    values: [./ruby-app/postgres.yaml]
+
+  - name: ruby-app
+    namespace: default
+    chart: ./ruby-app/

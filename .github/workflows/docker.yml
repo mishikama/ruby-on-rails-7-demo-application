@@ -50,3 +50,17 @@ jobs:
                 cache-from: type=registry,ref=${{ env.DOCKERHUB_REPOSITORY }}:buildcache
                 cache-to: type=registry,ref=${{ env.DOCKERHUB_REPOSITORY }}:buildcache,mode=max
                 platforms: linux/amd64,linux/arm64
+
+            - name: setup-helmfile
+              uses: mamezou-tech/setup-helmfile@v2.0.0
+              
+            - name: extract SHA tag
+              id: extract_tag
+              run: |
+                sha_tag=$(echo "${{ steps.meta.outputs.tags }}" | cut -d',' -f1)  # Используйте обратные кавычки или $()
+                echo "::set-output name=sha_tag::$sha_tag"
+              
+            - name: deploy
+              run: |
+                helmfile -f charts/helmfile.yaml apply \
+                -set image.tag=${{ steps.extract_tag.sha_tag }}

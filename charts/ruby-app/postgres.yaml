@@ -1,0 +1,16 @@
+# global:
+#   postgresql:
+#     auth:
+#       postgresPassword: ""
+#       username: ""
+#       password: ""
+#       database: ""
+#       existingSecret: ""
+#       secretKeys:
+#         adminPasswordKey: ""
+#         userPasswordKey: ""
+#         replicationPasswordKey: ""
+
+primary:
+  persistence:
+    size: 2Gi
