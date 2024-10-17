@@ -14,5 +14,5 @@
 Makefile
 README.md
 
-/ruby-app/data
-/ruby-app/chart
+**/data
+**/tmp
