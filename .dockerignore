@@ -1,18 +1,26 @@
-**/.DS_Store
-**/Thumbs.db
+# Git
+.git
+.gitignore
+.gitattributes
 
-**/.vscode
-.git*
+# Docker
+docker-compose.yml
+Dockerfile
+.docker
+.dockerignore
+.env
 
-**/*.log
-**/log
+# System
+.DS_Store
+Thumbs.db
 
-**/docker-compose*
-**/Dockerfile*
-**/.env
+# Temp and log
+tmp
+*.tmp
+log
+*.log
+
+data
 
 Makefile
 README.md
-
-**/data
-**/tmp

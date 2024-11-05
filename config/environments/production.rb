@@ -2,8 +2,8 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
 
-  config.hosts << /[a-z0-9-.]+\.csb\.app/
-  config.hosts << ENV['ALLOWED_HOST'] if ENV['ALLOWED_HOST'].present?
+  #config.hosts << /[a-z0-9-.]+\.csb\.app/
+  config.hosts = ENV['RB_ALLOWED_HOST'].present?
   
   # Settings specified here will take precedence over those in config/application.rb.
 
