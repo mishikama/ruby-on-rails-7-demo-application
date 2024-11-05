@@ -3,7 +3,9 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
 
   #config.hosts << /[a-z0-9-.]+\.csb\.app/
-  config.hosts << ENV['RAILS_PRODUCTION_HOSTS'].present?
+  if ENV['RAILS_PRODUCTION_HOSTS'].present?
+    config.hosts << ENV['RAILS_PRODUCTION_HOSTS']
+  end
   
   # Settings specified here will take precedence over those in config/application.rb.
 
