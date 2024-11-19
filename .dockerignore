@@ -1,0 +1,26 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+docker-compose.yml
+Dockerfile
+.docker
+.dockerignore
+.env
+
+# System
+.DS_Store
+Thumbs.db
+
+# Temp and log
+tmp
+*.tmp
+log
+*.log
+
+data
+
+Makefile
+README.md
