@@ -9,11 +9,12 @@ on:
 
 jobs:
     pull_request_open:
-        runs-on: ubuntu-latest
+      if: github.event_name == 'pull_request'
+      runs-on: ubuntu-latest
 
-        steps:
-          - name: echo
-            run: echo "New pull request"
+      steps:
+        - name: echo
+          run: echo "New pull request"
 
     build_and_push:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
