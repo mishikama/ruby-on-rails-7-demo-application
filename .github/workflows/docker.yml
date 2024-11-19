@@ -1,11 +1,14 @@
 name: Docker build and push image
-on:  
-    pull_request:
-        types: [opened, closed]
-        branches: [main]
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    tags:
+      - v*.*.*
+
 jobs:
     pull_request_open:
-        if: github.event.action == 'opened'
         runs-on: ubuntu-latest
 
         steps:
@@ -13,7 +16,7 @@ jobs:
             run: echo "New pull request"
 
     build_and_push:
-        if: github.event.action == 'closed'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         runs-on: ubuntu-latest
         env:
             DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -33,7 +36,7 @@ jobs:
               with: 
                 images: ${{ env.DOCKERHUB_REPOSITORY }}
                 tags: |
-                  type=sha
+                  type=ref,event=tag 
                   type=raw,value=latest
 
             - name: Docker Login
