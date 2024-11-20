@@ -6,7 +6,10 @@ require "active_support/core_ext/integer/time"
 # and recreated between test runs. Don't rely on the data there!
 
 Rails.application.configure do
-  config.hosts << /[a-z0-9]+\.csb\.app/
+  #config.hosts << /[a-z0-9]+\.csb\.app/
+  if config.hosts << ENV['RAILS_TEST_HOSTS'].present?
+    config.hosts << ENV['RAILS_TEST_HOSTS']
+  end
 
   # Settings specified here will take precedence over those in config/application.rb.
 
